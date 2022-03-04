@@ -6,7 +6,7 @@ import DragDropList from './DragDropList'
 var Key = ['AIzaSyC7-6v1eCkrtOESIW9B5UMms2oUgxdP7wA']
 
 const AnyReactComponent = ({ text }) => 
-    <div><AccessibilityIcon /></div>
+    <div className="loc">{text}</div>
 
 const listItem = [
   { title: "清寶鹹油條", src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAJ99vluAYcEeFk1t0HqI0VzGUUdvhaextpA&usqp=CAU", lat: 23.967405865634767, lng: 120.95330045720442 }, 
@@ -25,23 +25,43 @@ export default class Map extends Component {
     zoom: 15
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: listItem
+    }
+    this.changeList = this.changeList.bind(this);
+  }
+
+  changeList(updateList) {
+    this.setState({
+			list: updateList
+		})
+  }
+
   render() {
+    console.log( this.state.list)
     return (
       <div style={{ height: '100vh', width: '100%' }} className="dragdroplist-side">
         <div className="dragdroplist-board">
-          <DragDropList listItem={listItem} width={200} height={50} />
+          <DragDropList listItem={this.state.list} changeList={this.changeList} width={200} height={50} />
         </div>
         <GoogleMapReact
           bootstrapURLKeys={{ key: Key }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
-          <AnyReactComponent
-            lat={23.96823370739581}
-            lng={120.96023908465449}
-            text="My Marker"
-          />
-          
+          {
+            this.state.list.map((item, index) => 
+                <AnyReactComponent
+                  key={index}
+                  lat={item.lat}
+                  lng={item.lng}
+                  text={index+1}
+                />
+            )
+          }
+
         </GoogleMapReact>
         
       </div>

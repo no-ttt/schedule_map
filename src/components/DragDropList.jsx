@@ -38,8 +38,11 @@ export default class DragDropList extends Component {
 		this.setState({
 			list: listCopy
 		})
+		console.log(listCopy)
 	}
-
+	handleonDragEnd = () => {
+		this.props.changeList(this.state.list)
+	}
 	render() {
 		const { width, height } = this.props;
 		return (
@@ -48,7 +51,8 @@ export default class DragDropList extends Component {
           <div
             onDragStart={(e) => this.handleDragStart(e, index)}
             onDragOver={(e) => e.preventDefault()}
-            onDragEnter={(e) => this.handleDragEnter(e, index)}
+						onDragEnter={(e) => this.handleDragEnter(e, index)}
+						onDragEnd={(e) => this.handleonDragEnd(e, index)}
             key={index}
 						draggable
 						className="dragdroplist-frame"
