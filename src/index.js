@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Map from './components/Map';
+// import Map from './components/Map';
+// import Direction from './components/Direction';
+import MarkerLoc from './components/MarkerLoc';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Map />
+    <MarkerLoc />
   </React.StrictMode>,
   document.getElementById('root')
 );
