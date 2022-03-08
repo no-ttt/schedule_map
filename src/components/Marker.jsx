@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { GoogleMap, LoadScript, InfoBox } from '@react-google-maps/api';
+import React, { Component } from 'react'
+import { GoogleMap, LoadScript, InfoBox } from '@react-google-maps/api'
 import AccessibilityIcon from '@material-ui/icons/Accessibility'
 
 const containerStyle = {
@@ -11,7 +11,7 @@ const center = {
 	lng: 120.95896959995788
 };
 
-export default class MarkerLoc extends Component {
+export default class Marker extends Component {
 	render() {
 		return (
 			<LoadScript
@@ -26,10 +26,10 @@ export default class MarkerLoc extends Component {
 					position={center}
 					options={{ closeBoxURL: '', enableEventPropagation: true }}
 				>
-				<div>
-					<div><AccessibilityIcon fontSize="large" /></div>
-				</div>
-					</InfoBox>
+					<div>
+						<div><AccessibilityIcon fontSize="large" /></div>
+					</div>
+				</InfoBox>
 				</GoogleMap>
 			</LoadScript>
 		)

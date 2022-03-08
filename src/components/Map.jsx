@@ -1,3 +1,4 @@
+/*global google*/
 import React, { Component } from 'react'
 import GoogleMapReact from 'google-map-react'
 import AccessibilityIcon from '@material-ui/icons/Accessibility'

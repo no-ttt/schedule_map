@@ -15,8 +15,8 @@ code {
 .loc {
 	background-color: orange;
 	opacity: 0.8;
-	width: 20px;
-	height: 20px;
+	width: 30px;
+	height: 30px;
 	border-radius: 100%;
 	display: flex;
 	justify-content: center;
@@ -60,7 +60,7 @@ code {
 	background-color: white;
 }
 
-.dragdroplist-board {
+.mapv2-board {
   background-color: white;
   position: absolute;
   z-index: 1;
@@ -73,7 +73,7 @@ code {
   justify-content: center;
 }
 
-.dragdroplist-side {
+.mapv2-side {
   display: flex;
   justify-content: flex-end;
 }

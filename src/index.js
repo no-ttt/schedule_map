@@ -1,14 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-// import Map from './components/Map';
-// import Direction from './components/Direction';
-import MarkerLoc from './components/MarkerLoc';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import reportWebVitals from './reportWebVitals'
+import Map from './components/Map'
+import Direction from './components/Direction'
+import Marker from './components/Marker'
+import Mapv2 from './components/Mapv2'
+import routes from './routes.json'
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <MarkerLoc />
+    <Mapv2 routes={routes} />
   </React.StrictMode>,
   document.getElementById('root')
 );
