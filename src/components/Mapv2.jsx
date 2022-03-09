@@ -1,6 +1,6 @@
-import ReactDOM from "react-dom"
+/* global google */
 import React from "react"
-import { GoogleMap, DirectionsRenderer, InfoBox } from "@react-google-maps/api"
+import { GoogleMap, DirectionsRenderer, InfoBox, InfoWindow } from "@react-google-maps/api"
 import DragDropList from './DragDropList'
 
 const center = {
@@ -15,6 +15,9 @@ export default class Mapv2 extends React.Component {
     this.state = {
       routes: this.props.routes,
       directions: null,
+      displayBox: "",
+      display: false,
+      icon: "",
     }
     this.changeList = this.changeList.bind(this);
   };
@@ -22,13 +25,23 @@ export default class Mapv2 extends React.Component {
   changeList(updateList) {
     this.setState({
       routes: updateList,
+      displayBox: "",
+    }, () => {
+      this.onMapLoad()
     })
-    this.onMapLoad()
   }
+
+  _handleKeyDown = (e) => {
+		if (e.key === 'Enter') {
+		  this.setState({
+        icon: e.target.value
+      })
+		}
+	}
 
   onMapLoad = () => {
     directionsService = new google.maps.DirectionsService();
-
+    console.log(this.state.routes)
     const listCopy = this.state.routes.map(item => {
       return {
         location: { lat: item.location.lat, lng: item.location.lng },
@@ -96,6 +109,24 @@ export default class Mapv2 extends React.Component {
     return (
       <div className="mapv2-side">
         <div className="mapv2-board">
+          <div className="mapv2-board-title">南投一直吃</div>
+          <div className="mapv2-memo">
+            <div className="mapv2-memo-sort">
+              <div className="mapv2-memo-content">出發日期 : </div>
+              <div className="mapv2-memo-content">2022/3/9</div> 
+            </div>
+            <div className="mapv2-memo-sort">
+              <div className="mapv2-memo-content">交通方式 : </div>
+              <div className="mapv2-memo-content">汽車</div>
+            </div>
+            <div className="mapv2-memo-sort">
+              <div className="mapv2-memo-content">icon </div>
+                <input type="text"
+                  className="mapv2-input" style={{ width: "50", height: "30" }}
+                  onKeyDown={this._handleKeyDown}
+                />
+            </div>
+          </div>
           <DragDropList listItem={this.state.routes} changeList={this.changeList} width={200} height={50} />
         </div>
         <GoogleMap
@@ -115,7 +146,24 @@ export default class Mapv2 extends React.Component {
               position={{ lat: item.location.lat, lng: item.location.lng }}
               options={{ closeBoxURL: '', enableEventPropagation: true }}
             >
-              <div className="loc">{index + 1}</div>
+              <div>
+                {this.state.icon === "" 
+                  ? <button className="mapv2-default-loc" onClick={() => {this.setState({displayBox: index, display: !this.state.display})}}>{index+1}</button>
+                  : <button className="mapv2-icon-btn" onClick={() => {this.setState({displayBox: index, display: !this.state.display})}}><img src={this.state.icon} alt="my_icon" className="mapv2-icon" /></button>
+                }
+                {this.state.displayBox === index && this.state.display === true &&
+                  <InfoWindow
+                    position={{ lat: item.location.lat, lng: item.location.lng }}
+                    onCloseClick={() => {this.setState({display: !this.state.display})}}
+                    zIndex={1}
+                  >
+                    <div className="toolbox-info">
+                      <img title={item.title} src={item.src} alt={item.title} className="toolbox-img"></img>
+                      <div className="toolbox-title">{item.title}</div>
+                    </div>
+                  </InfoWindow>
+                }
+              </div>
             </InfoBox>
           )}
         </GoogleMap>

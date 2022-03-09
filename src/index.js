@@ -1,18 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
-import Map from './components/Map'
 import Direction from './components/Direction'
 import Marker from './components/Marker'
 import Mapv2 from './components/Mapv2'
+import ToolBox from './components/ToolBox'
 import routes from './routes.json'
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Mapv2 routes={routes} />
-  </React.StrictMode>,
+    <BrowserRouter>
+				<Switch>
+					<Route exact path="/map" render={props =>
+            <Mapv2 {...props} routes={routes} />} />
+          <Route exact path="/marker" component={Marker} />
+          <Route exact path="/direction" component={Direction} />
+          <Route exact path="/toolbox" component={ToolBox} />
+				</Switch>
+    </BrowserRouter>,
   document.getElementById('root')
 );
 

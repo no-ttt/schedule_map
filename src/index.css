@@ -12,19 +12,6 @@ code {
     monospace;
 }
 
-.loc {
-	background-color: orange;
-	opacity: 0.8;
-	width: 30px;
-	height: 30px;
-	border-radius: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: black;
-	font-weight: bold;
-}
-
 /* DragDropList */
 .dragdroplist-frame {
 	width: 300px;
@@ -60,25 +47,109 @@ code {
 	background-color: white;
 }
 
+.dragdroplist-content {
+  margin-top: 20px;
+}
+
+/* mapv2 */
+.mapv2-side {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .mapv2-board {
   background-color: white;
   position: absolute;
   z-index: 1;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
   height: 100%; 
-  width: 18%;
+  width: 20%;
   margin: 0; 
   padding: 0;
   display: flex;
-  justify-content: center;
+  align-items: center;
+	flex-direction: column;
 }
 
-.mapv2-side {
-  display: flex;
-  justify-content: flex-end;
+.mapv2-board-title {
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
-.dragdroplist-content {
-  margin-top: 20px;
+.mapv2-memo {
+	width: 210px;
+	height: 100px;
+	border: 1px #C4C4C4 solid;
+	z-index: 1;
+	padding-top: 5px;
+	padding-left: 10px;
+}
+
+.mapv2-memo-sort {
+	display: flex;
+	flex-direction: row;
+	margin-top: 5px;
+}
+
+.mapv2-memo-content {
+	font-size: 14px;
+	margin-left: 5px;
+}
+
+.mapv2-input {
+	margin-left: 5px;
+}
+
+.mapv2-icon-btn {
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	cursor: pointer;
+}
+
+.mapv2-icon {
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	object-fit: cover;
+}
+
+.mapv2-default-loc {
+	background-color: orange;
+	opacity: 0.8;
+	width: 30px;
+	height: 30px;
+	border-radius: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+}
+
+/* toolbox */
+.toolbox-info {
+	display: flex;
+	flex-direction: row;
+}
+
+.toolbox-img {
+	object-fit: cover;
+	width: 40px;
+	height: 40px;
+}
+
+.toolbox-title {
+	font-weight: bold;
+	margin-left: 5px;
+	margin-top: 5px;
 }
 
