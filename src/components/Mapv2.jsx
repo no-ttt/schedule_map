@@ -7,6 +7,7 @@ const center = {
   lat: 23.968249192607157,
   lng: 120.95896959995788
 };
+
 let directionsService;
 
 export default class Mapv2 extends React.Component {
