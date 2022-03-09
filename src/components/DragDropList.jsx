@@ -13,6 +13,7 @@ export default class DragDropList extends Component {
 		this.dragOverItem = React.createRef();
 		this.handleDragStart = this.handleDragStart.bind(this);
 		this.handleDragEnter = this.handleDragEnter.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 	}
 
 	handleDragStart = (e, position) => {
@@ -40,9 +41,19 @@ export default class DragDropList extends Component {
 		})
 		console.log(listCopy)
 	}
+
 	handleonDragEnd = () => {
 		this.props.changeList(this.state.list)
 	}
+
+	handleDelete = (item) => {
+		let updateList = this.state.list.filter(listItem => listItem !== item)
+		this.setState({
+			list: updateList
+		})
+		this.props.changeList(updateList)
+	}
+
 	render() {
 		const { width, height } = this.props;
 		return (
@@ -63,7 +74,7 @@ export default class DragDropList extends Component {
 							<div>{item.title}</div>
 						</div>
 						<button className="dragdroplist-btn" 
-							onClick={() => this.setState({list: this.state.list.filter(listItem => listItem !== item)})}
+							onClick={this.handleDelete.bind(this, item)}
 						>
 							<DeleteIcon />
 						</button>
