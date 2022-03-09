@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { GoogleMap, LoadScript, InfoBox } from '@react-google-maps/api'
+import { GoogleMap, InfoBox } from '@react-google-maps/api'
 import AccessibilityIcon from '@material-ui/icons/Accessibility'
 
 const containerStyle = {
@@ -7,31 +7,27 @@ const containerStyle = {
 };
 
 const center = {
-	lat: 23.968249192607157,
-	lng: 120.95896959995788
+	lat: 23.968668266711262, 
+	lng: 120.95759065868928
 };
 
 export default class Marker extends Component {
 	render() {
 		return (
-			<LoadScript
-				googleMapsApiKey="AIzaSyC7-6v1eCkrtOESIW9B5UMms2oUgxdP7wA"
+			<GoogleMap
+				mapContainerStyle={containerStyle}
+				center={center}
+				zoom={18}
 			>
-				<GoogleMap
-					mapContainerStyle={containerStyle}
-					center={center}
-					zoom={18}
-				>
-				<InfoBox
-					position={center}
-					options={{ closeBoxURL: '', enableEventPropagation: true }}
-				>
-					<div>
-						<div><AccessibilityIcon fontSize="large" /></div>
-					</div>
-				</InfoBox>
-				</GoogleMap>
-			</LoadScript>
+			<InfoBox
+				position={center}
+				options={{ closeBoxURL: '', enableEventPropagation: true }}
+			>
+				<div>
+					<div><AccessibilityIcon fontSize="large" /></div>
+				</div>
+			</InfoBox>
+			</GoogleMap>
 		)
 	}
 }
