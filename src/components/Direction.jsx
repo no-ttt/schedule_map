@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer } from '@react-google-maps/api'
-
-var Key = ['AIzaSyC7-6v1eCkrtOESIW9B5UMms2oUgxdP7wA']
+import { GoogleMap, DirectionsService, DirectionsRenderer } from '@react-google-maps/api'
 
 const containerStyle = {
   height: '100vh'
@@ -42,33 +40,29 @@ export default class Direction extends Component {
 
   render() {
     return (
-      <LoadScript
-        googleMapsApiKey={Key}
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={18}
       >
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={18}
-        >
-          <DirectionsService
-            options={{
-              destination: this.state.destination,
-              origin: this.state.origin,
-              travelMode: this.state.travelMode
-            }}
-            callback={this.directionsCallback}
-          />
-          {
-            this.state.response !== null && (
-              <DirectionsRenderer
-                options={{ 
-                  directions: this.state.response
-                }}
-              />
-            )
-          }
-        </GoogleMap>
-      </LoadScript>
+        <DirectionsService
+          options={{
+            destination: this.state.destination,
+            origin: this.state.origin,
+            travelMode: this.state.travelMode
+          }}
+          callback={this.directionsCallback}
+        />
+        {
+          this.state.response !== null && (
+            <DirectionsRenderer
+              options={{ 
+                directions: this.state.response
+              }}
+            />
+          )
+        }
+      </GoogleMap>
     )
   }
 }
