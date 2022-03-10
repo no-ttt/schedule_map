@@ -11,9 +11,6 @@ export default class DragDropList extends Component {
 		this.draggingItem = React.createRef();
 		// 被取代位置的元素
 		this.dragOverItem = React.createRef();
-		this.handleDragStart = this.handleDragStart.bind(this);
-		this.handleDragEnter = this.handleDragEnter.bind(this);
-		this.handleDelete = this.handleDelete.bind(this);
 	}
 
 	handleDragStart = (e, position) => {
@@ -39,7 +36,6 @@ export default class DragDropList extends Component {
 		this.setState({
 			list: listCopy
 		})
-		console.log(listCopy)
 	}
 
 	handleonDragEnd = () => {
